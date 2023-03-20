@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
 
-
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,33 +11,47 @@
 
     <body>
         <header>
-            <img src="../media/SVG/logo.svg" alt="logo" id="logo">
+            <div>
+                <img src="../media/SVG/logo.png" alt="logo" id="logo">
+            </div>
+            <div>
+                <p>
+                    Dal piccolo passo di un uomo a
+                    sconfinati viaggi spaziali per te.<br><br>
+                    Esplora il cosmo a prezzi
+                    galattici con la prima agenzia
+                    di viaggi interplanetari italiana.
+                </p>
+            </div>
         </header>
         <main>
             <h1>Login</h1>
             <form>
                 <input type="text" class="input-text" placeholder="*Nome utente" id="nome-utente" required>
-                <input type="password" class="input-text" placeholder="*Password" value="12345678" required>
+                <input type="password" class="input-text" placeholder="*Password" required>
                 <span id="forgot-password">Ho dimenticato la <a href="#">password</a></span>
                 <label id="remember">
                     <input type="checkbox" id="check">
                     <span>Ricordami</span>
+                    <img src="../media/SVG/info.svg" alt="info">
                 </label>
-                <button id="registrati-btn">Entra</button>
+                <button id="login-btn">Entra</button>
                 <span id="reg">oppure crea un <a href="../registrazione/registrazione.html">account</a></span>
                 <div id="accedi-altro">
                     <span>Accedi con</span>
                     <div id="accedi-altro-loghi-container">
                         <div>
                             <img src="../media/SVG/logo_google.svg" alt="logo google" class="loghi-accedi">
-                            <span>&nbsp;Google&nbsp;</span>
                         </div>
                         <div>
                             <img src="../media/SVG/logo_facebook.svg" alt="logo facebook" class="loghi-accedi">
-                            <span>Facebook</span>
                         </div>
                     </div>
                 </div>
+                <span id="privacy">
+                    Effettuando l'accesso o creando un account accetti <br />
+                    <a href="#">i termini e le condizioni e l'Informativa sulla privacy</a>
+                </span>
             </form>
         </main>
     </body>
