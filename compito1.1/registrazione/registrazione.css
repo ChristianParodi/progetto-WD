@@ -3,6 +3,21 @@
     src: url(../media/fonts/Kanit-ExtraLight.ttf);
 }
 
+@font-face {
+    font-family: Kanit;
+    src: url(../media/fonts/Kanit-Regular.ttf);
+}
+
+@font-face {
+    font-family: KanitBold;
+    src: url(../media/fonts/Kanit-Bold.ttf);
+}
+
+@font-face {
+    font-family: KanitLight;
+    src: url(../media/fonts/Kanit-Light.ttf);
+}
+
 * {
     color: #fff;
 }
@@ -12,6 +27,20 @@ body {
     margin: 0;
     width: 100%;
     height: 100%;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    margin-top: 109px;
+    margin-left: 137px;
+    width: 337px;
+}
+
+header p {
+    font-family: KanitLight;
+    font-size: 24px;
+    margin-top: 100px;
 }
 
 body {
@@ -24,15 +53,14 @@ body {
 #logo {
     width: 322px;
     height: 109.5px;
-    margin-left: 80px;
-    margin-top: 59px;
+    font-family: KanitBold;
 }
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -50px;
+    margin-top: -435px;
 }
 
 form {
@@ -42,15 +70,31 @@ form {
 }
 
 .input-text {
-    width: 501px;
-    background-color: transparent;
+    width: 459px;
+    height: 53px;
+    padding-left: 13px;
     border: 0;
     outline: 0;
-    border-bottom: 2px solid #fff;
+    border-radius: 100px;
+    background-color: #757575;
     color: #fff;
     font-family: KanitExtralight;
     font-size: 24px;
-    margin-top: 57px;
+    margin-top: 22px;
+}
+
+.input-text::placeholder {
+    color: #FFF;
+}
+
+.input-text:focus {
+    background-color: #FFF;
+    color: #000;
+}
+
+
+.input-text:focus::placeholder {
+    color: #000;
 }
 
 #nome-utente {
@@ -63,20 +107,30 @@ form {
     align-items: center;
     margin-top: 15.5px;
     margin-bottom: -40.5px;
+    margin-left: 10px;
     font-family: KanitExtralight;
     font-size: 16px;
 }
 
 #registrati-btn {
-    width: 403px;
+    width: 272px;
     padding: 10px 0;
+    border: 0;
+    outline: 0;
     color: #000;
     font-family: KanitExtralight;
     font-size: 24px;
     border-radius: 100px;
-    margin-top: 120px;
+    margin-top: 61px;
     margin-bottom: 20px;
     cursor: pointer;
+    animation: pulsate 2.5s infinite alternate;
+}
+
+#registrati-btn:hover {
+    box-shadow:
+        0 0 10px #FFF,
+        0 0 20px #FFF;
 }
 
 .logo-requirements {
@@ -90,7 +144,18 @@ form {
 }
 
 h1 {
-    font-family: KanitExtralight;
+    font-family: Kanit;
     font-size: 48px;
     font-weight: 100;
+    margin-bottom: 90px;
+}
+
+#privacy {
+    font-family: KanitExtralight;
+    font-size: 16px;
+    margin-bottom: 100px;
+}
+
+#confirm {
+    margin-top: 60px;
 }
