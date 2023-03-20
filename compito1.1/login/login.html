@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="login.css" type="text/css">
+        <title>Login</title>
+    </head>
+
+    <body>
+        <header>
+            <img src="../media/SVG/logo.svg" alt="logo" id="logo">
+        </header>
+        <main>
+            <h1>Login</h1>
+            <form>
+                <input type="text" class="input-text" placeholder="*Nome utente" id="nome-utente" required>
+                <input type="password" class="input-text" placeholder="*Password" value="12345678" required>
+                <span id="forgot-password">Ho dimenticato la <a href="#">password</a></span>
+                <label id="remember">
+                    <input type="checkbox" id="check">
+                    <span>Ricordami</span>
+                </label>
+                <button id="registrati-btn">Entra</button>
+                <span id="reg">oppure crea un <a href="../registrazione/registrazione.html">account</a></span>
+                <div id="accedi-altro">
+                    <span>Accedi con</span>
+                    <div id="accedi-altro-loghi-container">
+                        <div>
+                            <img src="../media/SVG/logo_google.svg" alt="logo google" class="loghi-accedi">
+                            <span>&nbsp;Google&nbsp;</span>
+                        </div>
+                        <div>
+                            <img src="../media/SVG/logo_facebook.svg" alt="logo facebook" class="loghi-accedi">
+                            <span>Facebook</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </body>
+
+</html>
