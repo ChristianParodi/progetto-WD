@@ -3,11 +3,14 @@ window.onload = function () {
     const logos = [...document.getElementsByClassName("logo-requirements")]
     passInput.addEventListener("input", (e) => {
         const text = e.target.value;
+
+        // Length
         if (text.length >= 8) {
             logos[0].setAttribute("src", "../media/SVG/tick_verde.svg");
         } else {
             logos[0].setAttribute("src", "../media/SVG/x_rossa.svg");
         }
+
         const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         const digits = "1234567890";
         const symbols = "|\\'\"/~^:,;?!&%$@*+#";
