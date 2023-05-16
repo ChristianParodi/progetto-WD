@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="registrazione.css" type="text/css">
+        <title>Registrazione</title>
+        <script src="controllaPassword.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <div>
+                <img src="../media/SVG/logo.png" alt="logo" id="logo">
+            </div>
+            <div>
+                <p>
+                    Dal piccolo passo di un uomo a
+                    sconfinati viaggi spaziali per te.<br><br>
+                    Esplora il cosmo a prezzi
+                    galattici con la prima agenzia
+                    di viaggi interplanetari italiana.
+                </p>
+            </div>
+        </header>
+        <main>
+            <h1>Registrazione</h1>
+            <form>
+                <input type="text" class="input-text" placeholder="*Nome utente" id="nome-utente" required>
+                <input type="email" class="input-text" placeholder="*E-Mail" required>
+                <input type="text" class="input-text" pattern="\+[0-9]{3}[0-9]{10}" placeholder="Numero di telefono">
+                <input type="password" id="pass" class="input-text" placeholder="*Password" required>
+                <div id="requirements">
+                    <div>
+                        <img src="../media/SVG/x_rossa.svg" alt="x rossa" class="logo-requirements">
+                        <span>Minimo 8 caratteri</span>
+                    </div>
+                    <div>
+                        <img src="../media/SVG/x_rossa.svg" alt="x rossa" class="logo-requirements">
+                        <span>Inserire almeno un numero</span>
+                    </div>
+                    <div>
+                        <img src="../media/SVG/x_rossa.svg" alt="x rossa" class="logo-requirements">
+                        <span>Inserire almeno un carattere speciale</span>
+                    </div>
+                    <div>
+                        <img src="../media/SVG/x_rossa.svg" alt="x rossa" class="logo-requirements">
+                        <span>Usare almeno una lettera maiuscola</span>
+                    </div>
+                </div>
+                <input type="password" class="input-text" placeholder="*Reinserire password" id="confirm" required>
+                <button id="registrati-btn" class="neon">Registrati</button>
+                <span id="oppure-accedi">oppure <a href="../login/login.html">accedi</a></span>
+                <span id="privacy">
+                    Effettuando l'accesso o creando un account accetti <br />
+                    <a href="#">i termini e le condizioni e l'Informativa sulla privacy</a>
+                </span>
+            </form>
+        </main>
+    </body>
+
+</html>
