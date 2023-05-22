@@ -1,76 +1,86 @@
-import { 
-  Container, 
+import {
+  Container,
   Heading,
   AbsoluteCenter,
-  Image, 
+  Image,
   Button,
   Flex,
   Spacer,
   Box,
   Icon,
   Text,
-  Center
-} from "@chakra-ui/react"
-import { MdSchool } from 'react-icons/md'
-import { FaUserTie } from 'react-icons/fa'
-import viteLogo from "/vite.svg"
-import React from "react"
-import { motion } from 'framer-motion'
+  Center,
+} from "@chakra-ui/react";
+
+import { MdSchool, MdSupportAgent } from "react-icons/md";
+
+import React from "react";
+import CustomButton from "./components/CustomButton";
 function App() {
   return (
-    <Container centerContent minH={"100vh"}>
-        <Flex
+    <Flex alignItems={"center"} flexDir="column" minH={"100vh"} minW={"100vw"}>
+      <Heading as="h1" size={"4xl"} mt={10}>
+        WorkPholio
+      </Heading>
+      <Heading as="h2" size={"sm"} color={"gray.500"} mt={5}>
+        Lorem ipsum dolor sit amet consectetur adipisicing
+        <br />
+        elit. Et ratione eligendi, beatae nam cupiditate error.
+      </Heading>
+      <Flex alignItems={"center"} gap={"15em"} mt={20}>
+        {/* Studente */}
+        <Box
+          boxShadow={"lg"}
+          minW={"300px"}
+          minH={"300px"}
+          bgColor={"blue.800"}
+          display={"flex"}
           flexDir={"column"}
           alignItems={"center"}
-          justifyContent={"center"}
-          gap={5}
-          ml={"300px"}
         >
-          <Image src={viteLogo} boxSize="200px" />
-          <Heading>
-            Benvenuto su (titolo)
-          </Heading>
-          <Heading size={'md'}>
-            Blurb Blurb Blurb Blurb Blurb
-          </Heading>
-          <Flex gap={100}>
-            <Button
-              w="fit-content"
-              h={"fit-content"}
-              display={"flex"}
-              flexDir={"column"}
-              py={5}
-              >
-              <Icon as={MdSchool} boxSize={"80px"} />
-              <Text>
-                Studente
-              </Text>
-            </Button>
-            <Button
-             w="fit-content"
-             h={"fit-content"}
-             display={"flex"}
-             flexDir={"column"}
-             py={5}
-             
-              >
-              <Icon as={FaUserTie} boxSize={"80px"} mb={2}/>
-              <Text>
-                Recruiter
-              </Text>
-            </Button>
-            <motion.div
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 1.1 }}
-            drag="x"
-            dragConstraints={{ left: -100, right: 100 }}
-            >
-
-            </motion.div>
+          <Icon as={MdSchool} boxSize={"80%"} color={"white"} />
+          <Spacer />
+          <Flex
+            alignItems={"center"}
+            justifyContent={"center"}
+            bgColor={"white"}
+            w={"100%"}
+            h={"3.5em"}
+          >
+            <Button colorScheme="yellow">Registrati</Button>
           </Flex>
-        </Flex>
-    </Container>
-  )
+        </Box>
+        {/* Recruiter */}
+        <Box
+          boxShadow={"lg"}
+          minW={"300px"}
+          minH={"300px"}
+          bgColor={"blue.800"}
+          display={"flex"}
+          flexDir={"column"}
+          alignItems={"center"}
+        >
+          <Icon as={MdSupportAgent} boxSize={"80%"} color={"white"} />
+          <Spacer />
+          <Flex
+            alignItems={"center"}
+            justifyContent={"center"}
+            bgColor={"white"}
+            w={"100%"}
+            h={"3.5em"}
+          >
+            <CustomButton colorScheme="yellow">Registrati</CustomButton>
+          </Flex>
+        </Box>
+      </Flex>
+      <Text mt={20} fontSize={"lg"}>
+        Oppure se hai gia' un'account
+      </Text>
+      <Button colorScheme="yellow" mt={5} size={"lg"}>
+        Accedi
+      </Button>
+    </Flex>
+  );
 }
 
-export default App
+export default App;
