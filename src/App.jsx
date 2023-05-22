@@ -47,7 +47,7 @@ function App() {
             w={"100%"}
             h={"3.5em"}
           >
-            <Button colorScheme="yellow">Registrati</Button>
+            <CustomButton colorScheme="yellow">Registrati</CustomButton>
           </Flex>
         </Box>
         {/* Recruiter */}
@@ -76,9 +76,9 @@ function App() {
       <Text mt={20} fontSize={"lg"}>
         Oppure se hai gia' un'account
       </Text>
-      <Button colorScheme="yellow" mt={5} size={"lg"}>
+      <CustomButton mt={5} colorScheme="yellow">
         Accedi
-      </Button>
+      </CustomButton>
     </Flex>
   );
 }

@@ -24,7 +24,6 @@ function CustomButton(props) {
         transform: scale(1);
       }
     }
-
     animation: ${isClicked ? "shrink 0.2s" : "none"};
   `;
 
