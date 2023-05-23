@@ -1,24 +1,19 @@
-import {
-  Container,
-  Heading,
-  AbsoluteCenter,
-  Image,
-  Button,
-  Flex,
-  Spacer,
-  Box,
-  Icon,
-  Text,
-  Center,
-} from "@chakra-ui/react";
+import { Heading, Flex, Spacer, Box, Icon, Text } from "@chakra-ui/react";
 
 import { MdSchool, MdSupportAgent } from "react-icons/md";
 
 import React from "react";
 import CustomButton from "./components/CustomButton";
+
 function App() {
   return (
-    <Flex alignItems={"center"} flexDir="column" minH={"100vh"} minW={"100vw"}>
+    <Flex
+      bgColor={"primary.100"}
+      alignItems={"center"}
+      flexDir="column"
+      minH={"100vh"}
+      minW={"100vw"}
+    >
       <Heading as="h1" size={"4xl"} mt={10}>
         WorkPholio
       </Heading>
