@@ -62,7 +62,7 @@ export default function Form() {
           // se la casella del remember me e' checked
           localStorage.setItem("remember", JSON.stringify(fetchedUser));
       });
-    navigate("/login");
+    navigate("/");
   };
 
   return (

@@ -9,11 +9,14 @@ import theme from "./theme.js";
 
 import { AuthProvider } from "./context/AuthProvider";
 import Homepage from "./components/homepage/Homepage.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
+import Loader from "./utils/Loader.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Homepage />,
+    errorElement: <ErrorPage />,
     children: [],
   },
   {
@@ -26,7 +29,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <ThemeProvider value={theme}>
-        <RouterProvider router={router} />
+        <Loader>
+          <RouterProvider router={router} />
+        </Loader>
       </ThemeProvider>
     </AuthProvider>
   </React.StrictMode>

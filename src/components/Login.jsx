@@ -9,11 +9,6 @@ function Login() {
   const { user } = useContext(UserContext);
   return (
     <>
-      {user && (
-        <Alert>
-          ciao {user.nome} {user.cognome}
-        </Alert>
-      )}
       <HeaderLogin />
       <main className="flex flex-col md:flex-row items-center justify-around w-full h-full pt-6 md:pt-16">
         <Form />
