@@ -8,17 +8,17 @@ import { ThemeProvider } from "@material-tailwind/react";
 import theme from "./theme.js";
 
 import { AuthProvider } from "./context/AuthProvider";
+import Homepage from "./components/homepage/Homepage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Homepage />,
+    children: [],
+  },
+  {
+    path: "/login",
     element: <Login />,
-    children: [
-      {
-        path: "/login",
-        element: <Login />,
-      },
-    ],
   },
 ]);
 

@@ -15,6 +15,7 @@ export default function Form() {
   const { setUser } = useContext(UserContext);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const errorRef = useRef(null);
   const navigate = useNavigate();
 
   // Controlla il remember me
@@ -31,7 +32,13 @@ export default function Form() {
       emailRef.current.value?.trim().toLowerCase() || undefined;
     const passwordValue = passwordRef.current.value?.trim() || undefined;
 
-    if (!emailValue || !passwordValue) return;
+    if (!emailValue || !passwordValue) {
+      errorRef.current.classList.remove("hidden");
+      errorRef.current.setHTML(
+        "L'email e la password non possono essere vuoti"
+      );
+      return;
+    }
 
     // Cerca l'utente
     base("utente")
@@ -52,7 +59,7 @@ export default function Form() {
         };
         setUser(fetchedUser);
         if (isChecked)
-          // se c'e' il remember me
+          // se la casella del remember me e' checked
           localStorage.setItem("remember", JSON.stringify(fetchedUser));
       });
     navigate("/login");
@@ -63,18 +70,28 @@ export default function Form() {
       <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 flex flex-col xl:w-[600px]">
         <div className="mb-4 flex flex-col gap-6">
           <Input
+            onChange={() => errorRef.current?.setHTML("")}
             ref={emailRef}
             placeholder="Nome utente"
             type="email"
             className={"xl:w-[600px]"}
           />
           <Input
+            onChange={() => errorRef.current?.setHTML("")}
             ref={passwordRef}
             type="password"
             placeholder="Password"
             className={"xl:w-[600px]"}
           />
         </div>
+        <Typography
+          ref={errorRef}
+          variant="lead"
+          className="self-center hidden"
+          color="red"
+        >
+          err
+        </Typography>
         <div className="flex justify-between items-center xl:w-[600px]">
           <Checkbox
             checked={isChecked}
@@ -92,7 +109,7 @@ export default function Form() {
           />
           <a
             href="#"
-            className="self-right border-b border-gray-600 pb-[0.01rem] hover:text-[#f57a07] hover:border-[#f57a07]"
+            className="self-right border-b  pb-[0.01rem] text-primaryUnclicked border-primaryUnclicked hover:border-primaryClicked hover:text-primaryClicked"
           >
             Password dimenticata?
           </a>
@@ -115,7 +132,7 @@ export default function Form() {
           Non hai ancora un account?{" "}
           <a
             href="#"
-            className="border-b border-gray-600 pb-[0.01rem] hover:text-[#f57a07] hover:border-[#f57a07]"
+            className="border-b text-primaryUnclicked border-primaryUnclicked hover:border-primaryClicked hover:text-primaryClicked pb-[0.01rem]"
           >
             Registrati
           </a>
