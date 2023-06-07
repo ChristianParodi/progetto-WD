@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "./../../context/AuthProvider";
 
 import banner1 from "/assets/banner_1.svg";
 import banner2 from "/assets/banner_2.svg";
@@ -6,8 +7,10 @@ import banner3 from "/assets/banner_3.svg";
 import { Button, Typography } from "@material-tailwind/react";
 
 import workLogo from "/assets/logo.svg";
+import { Link } from "react-router-dom";
 
 function Banner() {
+  const { user } = useContext(UserContext);
   return (
     <div className="grid grid-cols-1 grid-rows-1 md:grid-cols-3">
       <div
@@ -35,9 +38,11 @@ function Banner() {
           "bg-[url(" + workLogo + ")] bg-cover flex justify-center items-end"
         }
       >
-        <Button className=" bg-secondaryUnclicked active:bg-secondaryClicked focus:bg-secondaryClicked rounded-full mb-6">
-          Crea portfolio
-        </Button>
+        <Link to={user ? "/portfolio-editor" : "/login"}>
+          <Button className=" bg-secondaryUnclicked active:bg-secondaryClicked focus:bg-secondaryClicked rounded-full mb-6">
+            Crea portfolio
+          </Button>
+        </Link>
       </div>
     </div>
   );

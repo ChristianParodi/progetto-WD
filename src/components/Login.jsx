@@ -1,12 +1,9 @@
-import React, { createContext, useContext } from "react";
+import React from "react";
 import HeaderLogin from "./HeaderLogin";
 import Form from "./Form";
 import loginGif from "/assets/login_gif.svg";
-import { UserContext } from "../context/AuthProvider";
-import { Alert } from "@material-tailwind/react";
 
 function Login() {
-  const { user } = useContext(UserContext);
   return (
     <>
       <HeaderLogin />
