@@ -11,8 +11,10 @@ import {
   MenuList,
   Typography,
 } from "@material-tailwind/react";
+
 import { RxHamburgerMenu } from "react-icons/rx";
 import { UserContext } from "../context/AuthProvider";
+import Loader from "./../utils/Loader";
 
 import {
   Cog6ToothIcon,
@@ -31,7 +33,7 @@ const HamburgerMenu = () => {
           size="lg"
           className="block md:hidden mr-6 text-black"
         >
-          <RxHamburgerMenu size={"lg"} />
+          <RxHamburgerMenu size={"24"} />
         </IconButton>
       </MenuHandler>
       <MenuList>

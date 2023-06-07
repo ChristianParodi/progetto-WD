@@ -1,66 +1,41 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar";
-import {
-  Typography,
-  List,
-  ListItem,
-  Card,
-  Button,
-} from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
+import Input from "../../utils/Input";
+import { Sidebar } from "./Sidebar";
+import { FileInput } from "./FileInput";
+import { PlusIcon } from "./PlusIcon";
 
-const Sidebar = () => {
-  const [selected, setSelected] = useState(1);
-
-  return (
-    <div className="flex flex-col items-start">
-      <Button
-        onClick={() => setSelected(() => 1)}
-        variant="text"
-        className={`bg-${
-          selected === 1 ? "primaryClicked" : "inherit"
-        } text-[16px] normal-case t-6 p-5 text-primaryUnclicked  my-auto w-32 text-left`}
-      >
-        Sfondo
-      </Button>
-      <Button
-        onClick={() => setSelected(() => 2)}
-        variant="text"
-        className={`bg-${
-          selected === 2 ? "primaryClicked" : "inherit"
-        } text-[16px] normal-case t-6 p-5 text-primaryUnclicked  my-auto w-32 text-left`}
-      >
-        Immagini
-      </Button>
-      <Button
-        onClick={() => setSelected(() => 3)}
-        variant="text"
-        className={`bg-${
-          selected === 3 ? "primaryClicked" : "inherit"
-        } text-[16px] normal-case t-6 p-5 text-primaryUnclicked  my-auto w-32 text-left`}
-      >
-        Testi
-      </Button>
-    </div>
-  );
-};
 function SlideEditor() {
-  const [background, setBackground] = useState("");
   const [image, setImage] = useState("");
-  const [text, setText] = useState("");
   const [nPage, setNPage] = useState(1);
+  const [inputPos, setInputPos] = useState({ x: null, y: null });
+  const [inputText, setInputText] = useState("");
+  const [texts, setTexts] = useState([]);
 
-  const handleBackgroundChange = (e) => {
-    // Gestisci il cambiamento dello sfondo
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      setBackground(reader.result);
-    };
-    reader.readAsDataURL(file);
+  const handleTextClick = (e) => {
+    const { clientX, clientY } = e;
+    if (!inputPos?.active)
+      setInputPos({ x: clientX, y: clientY, active: true });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && inputPos.active) {
+      e.preventDefault();
+      const newText = {
+        x: inputPos.x,
+        y: inputPos.y,
+        text: inputText,
+      };
+
+      setTexts([...texts, newText]);
+      console.log(texts);
+      setInputText("");
+      setInputPos({ x: null, y: null, active: false });
+    }
   };
 
   const handleImageChange = (e) => {
-    // Gestisci il cambiamento dell'immagine
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
@@ -69,38 +44,52 @@ function SlideEditor() {
     reader.readAsDataURL(file);
   };
 
-  const handleTextChange = (e) => {
-    // Gestisci il cambiamento del testo
-    setText(e.target.value);
-  };
-
   return (
     <>
       <Navbar />
       <div className="flex p-6">
-        <div className="w-1/3">
-          <Typography variant="h6">Pagina {nPage}</Typography>
-          <Sidebar />
+        <div className="w-[20%] h-[70vh]">
+          <Typography variant="h4">Pagina {nPage}</Typography>
+          <Sidebar nPage={nPage} setNPage={setNPage} />
         </div>
-        <div className="w-2/3">v</div>
-      </div>
-      <div className="slide-editor-container">
-        <input type="file" onChange={handleBackgroundChange} />
-        <input type="file" onChange={handleImageChange} />
-        <textarea value={text} onChange={handleTextChange} />
-
-        <div className="preview-slide">
-          <div
-            className="slide"
-            style={{
-              backgroundImage: `url(${background})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <img src={image} alt="Slide Image" />
-            <p>{text}</p>
-          </div>
+        <div
+          onClick={handleTextClick}
+          className="h-[70vh] w-[80%] border-2 border-gray-400 flex flex-col items-center justify-center"
+        >
+          {inputPos.x !== null && inputPos.y !== null && (
+            <Input
+              autoFocus
+              type="text"
+              value={inputText}
+              className={`absolute border-2`}
+              style={{
+                left: inputPos.x,
+                top: inputPos.y,
+              }}
+              onChange={(e) => setInputText(() => e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          )}
+          {texts.map((text, index) => {
+            <span className="absolute" key={index}>
+              {text.text}
+            </span>;
+          })}
+          {!image ? (
+            <>
+              <PlusIcon />
+              <Typography variant="h6" className="text-textColor">
+                Carica sfondo
+              </Typography>
+              <FileInput onChange={handleImageChange} />
+            </>
+          ) : (
+            <img
+              src={image}
+              alt="Slide"
+              className="w-full h-full object-fill"
+            />
+          )}
         </div>
       </div>
     </>

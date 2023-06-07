@@ -10,7 +10,6 @@ import theme from "./theme.js";
 import { AuthProvider } from "./context/AuthProvider";
 import Homepage from "./components/homepage/Homepage.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
-import Loader from "./utils/Loader.jsx";
 import SlideEditor from "./components/PortfolioEditor/SlideEditor.jsx";
 
 const router = createBrowserRouter([
@@ -34,9 +33,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
       <ThemeProvider value={theme}>
-        <Loader>
-          <RouterProvider router={router} />
-        </Loader>
+        <RouterProvider router={router} />
       </ThemeProvider>
     </AuthProvider>
   </React.StrictMode>
