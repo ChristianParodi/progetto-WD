@@ -51,11 +51,14 @@ export default function Form() {
         if (err) console.log(err);
         const record = records[0];
         const fetchedUser = {
+          recordId: record.id,
           ID: record.get("ID"),
           nome: record.get("nome"),
           cognome: record.get("cognome"),
           email: record.get("email"),
           nickname: record.get("nickname"),
+          avatar: record.get("avatar")[0].url,
+          bio: record.get("bio"),
         };
         setUser(fetchedUser);
         if (isChecked)

@@ -1,9 +1,8 @@
 import React from "react";
-import Navbar from "../Navbar";
+import Navbar from "../Navbar/Navbar";
 import Banner from "./Banner";
 import Search from "./Search";
 import { Typography } from "@material-tailwind/react";
-import Footer from "../Footer";
 
 function Homepage() {
   return (

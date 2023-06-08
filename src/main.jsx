@@ -10,7 +10,7 @@ import theme from "./theme.js";
 import { AuthProvider } from "./context/AuthProvider";
 import Homepage from "./components/homepage/Homepage.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
-import SlideEditor from "./components/PortfolioEditor/SlideEditor.jsx";
+import Profile from "./components/Profile/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,8 +24,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/portfolio-editor",
-    element: <SlideEditor />,
+    path: "/profile/:id",
+    element: <Profile />,
   },
 ]);
 
