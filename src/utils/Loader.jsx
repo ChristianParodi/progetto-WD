@@ -1,19 +1,14 @@
 import { Spinner } from "@material-tailwind/react";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-function Loader({ children }) {
-  const [isLoading, setIsLoading] = useState(true);
-
-  return isLoading ? (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50">
-      <Spinner className="h-14 w-14" />
-    </div>
-  ) : (
-    React.Children.map(children, (child) => {
-      if (React.isValidElement(child))
-        return React.cloneElement(child, { onLoad: () => setIsLoading(false) });
-      return child;
-    })
+function Loader({ isLoading }) {
+  return (
+    isLoading && (
+      <div className="z-[9999] fixed inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 bg-gray-400 bg-opacity-90 backdrop-filter backdrop-blur-md"></div>
+        <Spinner className="h-14 w-14" />
+      </div>
+    )
   );
 }
 

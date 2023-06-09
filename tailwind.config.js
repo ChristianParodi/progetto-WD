@@ -17,5 +17,7 @@ export default withMT({
     variants: {
         display: ['responsive', 'group-hover', 'group-focus', 'focus-within', 'first', 'last', 'odd', 'even', 'hover', 'focus', 'active', 'visited', 'disabled']
     },
-    plugins: [],
+    plugins: [
+        require('@tailwindcss/typography')
+    ],
 });

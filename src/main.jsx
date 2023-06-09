@@ -3,14 +3,12 @@ import ReactDOM from "react-dom/client";
 import Login from "./components/Login.jsx";
 import "./index.css";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ThemeProvider } from "@material-tailwind/react";
-import theme from "./theme.js";
+import { createBrowserRouter } from "react-router-dom";
 
-import { AuthProvider } from "./context/AuthProvider";
 import Homepage from "./components/homepage/Homepage.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import Profile from "./components/Profile/Profile.jsx";
+import App from "./App.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,11 +28,5 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <ThemeProvider value={theme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </AuthProvider>
-  </React.StrictMode>
+  <App router={router} />
 );

@@ -3,22 +3,32 @@ import { UserContext } from "../../context/AuthProvider";
 import { Avatar, Button, Typography } from "@material-tailwind/react";
 
 import CV from "./CV";
+import base from "../../db/useAirtable";
 
 function Profile() {
   const { user, setUser } = useContext(UserContext);
 
-  // TODO: solo per testing!
   useEffect(() => {
-    if (!user)
-      setUser({
-        ID: 1,
-        nome: "Christian",
-        cognome: "Parodi",
-        email: "christian@christian.com",
-        nickname: "christio",
-        avatar:
-          "https://v5.airtableusercontent.com/v1/17/17/1686261600000/hZyYPfrPVWVSIERR5reB5w/KD7S7VDoK8GqsO4kgu3XcKTSW7kSLY8nQESNvBEVXSQ9cAlmPao90gjuPGC6eEAyE2jYc40481UcbJK27Z4gE2teHh7MASKUwv9nHtvLYlk/_WjMuN-dL1w7CJouvUVVYkNudvVHZbJixFqBqrsVsX0",
-        bio: "Sono abbastanza bravo penso cioe' non so perche' alla fine me lo dico da solo",
+    base("utente")
+      .select({
+        filterByFormula: `ID = 1`,
+        maxRecords: 1,
+        view: "Grid view",
+      })
+      .firstPage((err, records) => {
+        if (err) console.log(err);
+        const record = records[0];
+        const fetchedUser = {
+          recordId: record.id,
+          ID: record.get("ID"),
+          nome: record.get("nome"),
+          cognome: record.get("cognome"),
+          email: record.get("email"),
+          nickname: record.get("nickname"),
+          avatar: record.get("avatar")[0].url,
+          bio: record.get("bio"),
+        };
+        setUser(fetchedUser);
       });
   }, []);
 
@@ -43,10 +53,10 @@ function Profile() {
           <Button>Contatta</Button>
         </div>
         {/* Curriculum */}
-        <div className="grid-start-2 col-span-2 border-2">
+        <div className="col-start-2 col-span-2 border-2 flex justify-center p-6">
           <CV />
-          <div className="col-span-2 grid-start-2 border-2">Terza colonna</div>
         </div>
+        <div className="col-start-2 col-span-2 border-2">Terza colonna</div>
       </div>
     )
   );
