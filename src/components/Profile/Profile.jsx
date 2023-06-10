@@ -4,6 +4,9 @@ import { Avatar, Button, Typography } from "@material-tailwind/react";
 
 import CV from "./CV";
 import base from "../../db/useAirtable";
+import Navbar from "../Navbar/Navbar";
+import Loader from "../../utils/Loader";
+import Projects from "./Projects";
 
 function Profile() {
   const { user, setUser } = useContext(UserContext);
@@ -34,30 +37,36 @@ function Profile() {
 
   return (
     user && (
-      <div className="grid grid-cols-3 h-[100vh] w-full">
-        {/* Avatar */}
-        <div className="flex flex-col items-center mt-10">
-          <Avatar
-            variant="circular"
-            alt="candice wu"
-            className="w-64 h-64 mb-4"
-            src={user.avatar}
-          />
-          <Typography variant="lead" className="text-3xl">
-            {user.nome} {user.cognome}
-          </Typography>
-          <Typography className="text-gray-500">@{user.nickname}</Typography>
-          <Typography variant="lead" className="p-12">
-            {user.bio}
-          </Typography>
-          <Button>Contatta</Button>
+      <>
+        <Loader />
+        {/* <Navbar /> */}
+        <div className="grid grid-cols-3 grid-rows-4 h-[100vh] w-full">
+          {/* Avatar */}
+          <div className="flex flex-col items-center mt-10">
+            <Avatar
+              variant="circular"
+              alt="candice wu"
+              className="w-64 h-64 mb-4"
+              src={user.avatar}
+            />
+            <Typography variant="lead" className="text-3xl">
+              {user.nome} {user.cognome}
+            </Typography>
+            <Typography className="text-gray-500">@{user.nickname}</Typography>
+            <Typography variant="lead" className="p-12">
+              {user.bio}
+            </Typography>
+            <Button>Contatta</Button>
+          </div>
+          {/* Curriculum */}
+          <div className="col-start-2 col-span-2 row-span-2 border-2 flex p-6 ">
+            <CV />
+          </div>
+          <div className="col-start-2 col-span-2 row-span-2 border-2">
+            <Projects />
+          </div>
         </div>
-        {/* Curriculum */}
-        <div className="col-start-2 col-span-2 border-2 flex justify-center p-6">
-          <CV />
-        </div>
-        <div className="col-start-2 col-span-2 border-2">Terza colonna</div>
-      </div>
+      </>
     )
   );
 }
