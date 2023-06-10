@@ -59,10 +59,10 @@ function Profile() {
             <Button>Contatta</Button>
           </div>
           {/* Curriculum */}
-          <div className="col-start-2 col-span-2 row-span-2 border-2 flex p-6 ">
+          <div className="col-start-2 col-span-2 row-span-2 border-2 flex justify-start items-start p-6">
             <CV />
           </div>
-          <div className="col-start-2 col-span-2 row-span-2 border-2">
+          <div className="col-start-2 col-span-2 row-span-2 border-2 flex justify-start items-start p-6 gap-2">
             <Projects />
           </div>
         </div>

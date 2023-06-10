@@ -20,7 +20,7 @@ function App({ router }) {
         <RouterProvider router={router} />
       </ThemeProvider>
     </AuthProvider>
-    // </React.StrictMode>
+    // {/* </React.StrictMode> */}
   );
 }
 

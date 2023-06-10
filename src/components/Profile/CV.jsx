@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Chip, Typography } from "@material-tailwind/react";
-import { Card, CardBody, CardFooter } from "@material-tailwind/react";
+import { Chip, Typography } from "@material-tailwind/react";
+import { Card, CardBody } from "@material-tailwind/react";
 import { UserContext } from "../../context/AuthProvider";
 
 import base from "../../db/useAirtable";
 
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+
 export default function CV() {
   const [studies, setStudies] = useState([]);
   const [workExp, setWorkExp] = useState([]);
@@ -76,77 +77,65 @@ export default function CV() {
   return (
     <>
       <div className="flex flex-col">
+        <Typography variant="h5" color="blue-gray">
+          Studi
+        </Typography>
         <div className="flex flex-col xl:flex-row gap-2">
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            Studi
-          </Typography>
           {studies.map((study) => (
-            <Card
-              key={study.recordId}
-              className="mt-6 w-96 h-min"
-              shadow={false}
-            >
+            <Card key={study.recordId} className=" h-min" shadow={false}>
               <CardBody>
-                <div>
-                  <div className="flex flex-col gap-2">
-                    <Typography variant="h5">{study.nome}</Typography>
-                    <div className="flex gap-2">
-                      <Chip
-                        variant="ghost"
-                        value={new Date(study.data_inizio).toLocaleDateString(
-                          "en-GB"
-                        )}
-                        className="bg-primaryUnclicked bg-opacity-50 text-black text-center w-min"
-                      />
-                      <ArrowRightIcon className="w-4" />
-                      <Chip
-                        variant="ghost"
-                        value={new Date(study.data_fine).toLocaleDateString(
-                          "en-GB"
-                        )}
-                        className="bg-primaryUnclicked bg-opacity-50 text-black text-center w-min"
-                      />
-                    </div>
-                    <p className="line-clamp-3">{study.descrizione}</p>
+                <div className="flex flex-col gap-2">
+                  <Typography variant="h5">{study.nome}</Typography>
+                  <div className="flex gap-2">
+                    <Chip
+                      variant="ghost"
+                      value={new Date(study.data_inizio).toLocaleDateString(
+                        "en-GB"
+                      )}
+                      className="bg-primaryUnclicked bg-opacity-50 text-black text-center w-min"
+                    />
+                    <ArrowRightIcon className="w-4" />
+                    <Chip
+                      variant="ghost"
+                      value={new Date(study.data_fine).toLocaleDateString(
+                        "en-GB"
+                      )}
+                      className="bg-primaryUnclicked bg-opacity-50 text-black text-center w-min"
+                    />
                   </div>
+                  <p className="line-clamp-3">{study.descrizione}</p>
                 </div>
               </CardBody>
             </Card>
           ))}
         </div>
+        <Typography variant="h5" className="h-min">
+          Esperienza lavorativa
+        </Typography>
         <div className="flex flex-col xl:flex-row gap-2">
-          <Typography variant="h5" className="mb-2">
-            Esperienza lavorativa
-          </Typography>
           {workExp.map((workExp) => (
-            <Card
-              key={workExp.recordId}
-              className="mt-6 w-96 h-min"
-              shadow={false}
-            >
+            <Card key={workExp.recordId} className="h-min" shadow={false}>
               <CardBody>
-                <div>
-                  <div className="flex flex-col gap-2">
-                    <Typography variant="h5">{workExp.nome}</Typography>
-                    <div className="flex gap-2">
-                      <Chip
-                        variant="ghost"
-                        value={new Date(workExp.data_inizio).toLocaleDateString(
-                          "en-GB"
-                        )}
-                        className="bg-primaryUnclicked bg-opacity-50 text-black text-center w-min"
-                      />
-                      <ArrowRightIcon className="w-4" />
-                      <Chip
-                        variant="ghost"
-                        value={new Date(workExp.data_fine).toLocaleDateString(
-                          "en-GB"
-                        )}
-                        className="bg-primaryUnclicked bg-opacity-50 text-black text-center w-min"
-                      />
-                    </div>
-                    <p className="prose line-clamp-3">{workExp.descrizione}</p>
+                <div className="flex flex-col gap-2 justify-start">
+                  <Typography variant="h5">{workExp.nome}</Typography>
+                  <div className="flex gap-2">
+                    <Chip
+                      variant="ghost"
+                      value={new Date(workExp.data_inizio).toLocaleDateString(
+                        "en-GB"
+                      )}
+                      className="bg-primaryUnclicked bg-opacity-50 text-black text-center w-min"
+                    />
+                    <ArrowRightIcon className="w-4" />
+                    <Chip
+                      variant="ghost"
+                      value={new Date(workExp.data_fine).toLocaleDateString(
+                        "en-GB"
+                      )}
+                      className="bg-primaryUnclicked bg-opacity-50 text-black text-center w-min"
+                    />
                   </div>
+                  <p className="prose line-clamp-3">{workExp.descrizione}</p>
                 </div>
               </CardBody>
             </Card>
