@@ -40,9 +40,9 @@ function Profile() {
       <>
         <Loader />
         {/* <Navbar /> */}
-        <div className="grid grid-cols-3 grid-rows-4 h-[100vh] w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-3  lg:grid-rows-4 h-[100vh] w-full">
           {/* Avatar */}
-          <div className="flex flex-col items-center mt-10">
+          <div className="w-full flex flex-col items-center mt-10 mb-6">
             <Avatar
               variant="circular"
               alt="candice wu"
@@ -59,10 +59,11 @@ function Profile() {
             <Button>Contatta</Button>
           </div>
           {/* Curriculum */}
-          <div className="col-start-2 col-span-2 row-span-2 border-2 flex justify-start items-start p-6">
+          <div className="w-full lg:col-start-2 lg:col-span-2 lg:row-span-2 border-2 flex justify-start items-start p-6">
             <CV />
           </div>
-          <div className="col-start-2 col-span-2 row-span-2 border-2 flex justify-start items-start p-6 gap-2">
+          {/* Projects */}
+          <div className="w-full lg:col-start-2 lg:col-span-2 lg:row-span-2 border-2 flex justify-center items-center lg:justify-start lg:items-start p-6 gap-4">
             <Projects />
           </div>
         </div>

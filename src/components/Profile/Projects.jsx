@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../context/AuthProvider";
 
 import base from "../../db/useAirtable";
-import { UserContext } from "../../context/AuthProvider";
+
 import {
   Button,
   Card,
@@ -9,13 +10,13 @@ import {
   CardFooter,
   CardHeader,
   Chip,
-  Typography,
 } from "@material-tailwind/react";
+
 function Projects() {
   const [projects, setProjects] = useState([]);
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
+  const fetchProjects = () => {
     base("progetto")
       .select({
         filterByFormula: `IF({utente} = '${user.recordId}', 'Match', 'No Match')`,
@@ -34,18 +35,23 @@ function Projects() {
         });
         fetchNextPage();
       });
+  };
+
+  useEffect(() => {
+    fetchProjects();
   }, []);
 
   return (
     <>
-      {projects.map((project) => (
-        <div
-          key={project.recordId}
-          className="flex flex-col items-center mt-10"
-        >
-          <Card className="mt-6 w-96 h-[400px]">
-            <CardHeader color="blue-gray" className="relative h-56">
-              <img src={project.copertina} alt="" layout="fill" />
+      <div className="flex flex-col lg:flex-row items-center gap-6 mt-10">
+        {projects.map((project) => (
+          <Card key={project.recordId} className="mt-6 w-96 h-[400px]">
+            <CardHeader color="blue-gray" className="h-56">
+              <img
+                src={project.copertina}
+                alt="cover"
+                className="object-fit w-96 h-56"
+              />
             </CardHeader>
             <CardBody className="flex flex-col gap-4">
               <div className="flex justify-between">
@@ -69,8 +75,8 @@ function Projects() {
               </Button>
             </CardFooter>
           </Card>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }
