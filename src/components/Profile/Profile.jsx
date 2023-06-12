@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/AuthProvider";
 import { Avatar, Button, Typography } from "@material-tailwind/react";
 
 import CV from "./CV";
 import base from "../../db/useAirtable";
-import Navbar from "../Navbar/Navbar";
 import Loader from "../../utils/Loader";
 import Projects from "./Projects";
 
@@ -40,13 +39,13 @@ function Profile() {
       <>
         <Loader />
         {/* <Navbar /> */}
-        <div className="grid grid-cols-1 lg:grid-cols-3  lg:grid-rows-4 h-[100vh] w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-3 h-[100vh] w-full">
           {/* Avatar */}
           <div className="w-full flex flex-col items-center mt-10 mb-6">
             <Avatar
               variant="circular"
               alt="candice wu"
-              className="w-64 h-64 mb-4"
+              className="md:w-64 md:h-64 w-50 h-50 mb-4"
               src={user.avatar}
             />
             <Typography variant="lead" className="text-3xl">
@@ -59,11 +58,11 @@ function Profile() {
             <Button>Contatta</Button>
           </div>
           {/* Curriculum */}
-          <div className="w-full lg:col-start-2 lg:col-span-2 lg:row-span-2 border-2 flex justify-start items-start p-6">
+          <div className="w-full lg:col-start-2 lg:col-span-3 lg:row-span-1 border-2 flex  p-6">
             <CV />
           </div>
           {/* Projects */}
-          <div className="w-full lg:col-start-2 lg:col-span-2 lg:row-span-2 border-2 flex justify-center items-center lg:justify-start lg:items-start p-6 gap-4">
+          <div className="w-full lg:col-start-2 lg:col-span-3 lg:row-start-2 lg:row-span-2 border-2 flex justify-center items-center lg:justify-start lg:items-start p-6 gap-4">
             <Projects />
           </div>
         </div>

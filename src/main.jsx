@@ -8,6 +8,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Homepage from "./components/homepage/Homepage.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import Profile from "./components/Profile/Profile.jsx";
+import AllStudies from "./components/Profile/AllStudies.jsx";
+import AllJobs from "./components/Profile/AllJobs.jsx";
 import App from "./App.jsx";
 
 const router = createBrowserRouter([
@@ -15,7 +17,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <Homepage />,
     errorElement: <ErrorPage />,
-    children: [],
   },
   {
     path: "/login",
@@ -24,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "/profile/:id",
     element: <Profile />,
+  },
+  {
+    path: "/profile/:id/studies",
+    element: <AllStudies />,
+  },
+  {
+    path: "/profile/:id/works",
+    element: <AllJobs />,
   },
 ]);
 
