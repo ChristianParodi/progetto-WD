@@ -41,9 +41,7 @@ function Projects() {
       });
   };
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
+  useEffect(fetchProjects, []);
 
   return (
     <>

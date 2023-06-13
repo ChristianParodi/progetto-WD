@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import base from "../../../db/useAirtable";
 import { Typography } from "@material-tailwind/react";
-import CSTemplate from "../../templates/CSTemplate";
+import DeveloperTemplate from "../../templates/DeveloperTemplate";
 import DesignerTemplate from "../../templates/DesignerTemplate";
 
 function ProjectEditor() {
@@ -11,8 +11,8 @@ function ProjectEditor() {
 
   const templateComponents = (projectName) => {
     switch (projectName) {
-      case "CS":
-        return <CSTemplate />;
+      case "Sviluppatore":
+        return <DeveloperTemplate project={project} />;
       case "Designer":
         return <DesignerTemplate project={project} />;
       default:

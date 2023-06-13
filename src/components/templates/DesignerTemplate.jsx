@@ -1,6 +1,6 @@
 import React from "react";
 
-function DesignerTemplate({ project }) {
+function DesignerTemplate() {
   return <div>DesignerTemplate</div>;
 }
 
