@@ -1,15 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/AuthProvider";
-import { Avatar, Button, Typography } from "@material-tailwind/react";
+import {
+  Avatar,
+  Button,
+  Typography,
+  IconButton,
+} from "@material-tailwind/react";
 
 import CV from "./CV";
 import base from "../../db/useAirtable";
 import Loader from "../../utils/Loader";
 import Projects from "./Projects";
 
+import { HeartIcon } from "@heroicons/react/24/solid";
+
 function Profile() {
   const { user, setUser } = useContext(UserContext);
 
+  // TODO: solo per testing!
   useEffect(() => {
     base("utente")
       .select({
@@ -20,6 +28,7 @@ function Profile() {
       .firstPage((err, records) => {
         if (err) console.log(err);
         const record = records[0];
+
         const fetchedUser = {
           recordId: record.id,
           ID: record.get("ID"),
@@ -30,6 +39,7 @@ function Profile() {
           avatar: record.get("avatar")[0].url,
           bio: record.get("bio"),
         };
+        
         setUser(fetchedUser);
       });
   }, []);
@@ -55,7 +65,9 @@ function Profile() {
             <Typography variant="lead" className="p-12">
               {user.bio}
             </Typography>
-            <Button>Contatta</Button>
+            <div className={`flex items-center gap-4`}>
+              <Button>Contatta</Button>
+            </div>
           </div>
           {/* Curriculum */}
           <div className="w-full lg:col-start-2 lg:col-span-3 lg:row-span-1 border-2 flex  p-6">

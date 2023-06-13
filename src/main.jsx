@@ -11,6 +11,7 @@ import Profile from "./components/Profile/Profile.jsx";
 import AllStudies from "./components/Profile/AllStudies.jsx";
 import AllJobs from "./components/Profile/AllJobs.jsx";
 import App from "./App.jsx";
+import ProjectEditor from "./components/Profile/ProjectEditor/ProjectEditor.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/profile/:id/works",
     element: <AllJobs />,
+  },
+  {
+    path: "/profile/:id/create",
+    element: <ProjectEditor />,
   },
 ]);
 

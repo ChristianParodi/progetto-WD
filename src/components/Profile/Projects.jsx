@@ -10,7 +10,11 @@ import {
   CardFooter,
   CardHeader,
   Chip,
+  Typography,
 } from "@material-tailwind/react";
+
+import { PlusIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
@@ -43,7 +47,7 @@ function Projects() {
 
   return (
     <>
-      <div className="flex flex-col lg:flex-row items-center gap-6 mt-10">
+      <div className="flex flex-col flex-wrap lg:flex-row items-center gap-6 mt-10">
         {projects.map((project) => (
           <Card key={project.recordId} className="mt-6 w-96 h-[400px]">
             <CardHeader color="blue-gray" className="h-56">
@@ -76,6 +80,14 @@ function Projects() {
             </CardFooter>
           </Card>
         ))}
+        <Link to={"create"}>
+          <div className="bg-gray-400 hover:bg-primaryUnclicked hover:bg-opacity-60 h-[400px] w-96 rounded-xl flex flex-col justify-center items-center hover:shadow-none hover:scale-105 focus:shadow-none focus:scale-105 active:scale-100 duration-100 cursor-pointer">
+            <PlusIcon className="w-32" />
+            <Typography variant="h6" color="black">
+              Aggiungi progetto
+            </Typography>
+          </div>
+        </Link>
       </div>
     </>
   );
