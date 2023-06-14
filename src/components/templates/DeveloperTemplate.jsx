@@ -174,7 +174,11 @@ function DeveloperTemplate({ project }) {
   const editorRef = useRef(null);
 
   const blocks = [];
-  for (let i = 0; i < 6; i++) blocks.push(useRef(null));
+  const resDivs = [];
+  for (let i = 0; i < 6; i++) {
+    resDivs.push(useRef(null));
+    blocks.push(useRef(null));
+  }
 
   return (
     <div className="min-h-[100vh] flex justify-center">
@@ -185,23 +189,32 @@ function DeveloperTemplate({ project }) {
             <Button
               onClick={() => {
                 setClickedOperation("");
-                const node = document.createElement("DIV");
-                node.setHTML(editorRef.current.getContent());
-                blocks[0].current.innerHTML = "";
-                blocks[0].current.appendChild(node);
+                resDivs[0].current.setHTML(editorRef.current.getContent());
               }}
             >
               Salva
             </Button>
           </>
         )}
+        <div
+          onClick={() => {
+            setClickedBlock(0);
+            handleOpen();
+          }}
+          ref={resDivs[0]}
+          className={
+            resDivs[0].current?.innerHTML === ""
+              ? "hidden"
+              : "prose h-min cursor-pointer"
+          }
+        ></div>
         <AddMediaButton
           ref={blocks[0]}
           onClick={() => {
             setClickedBlock(0);
             handleOpen();
           }}
-          className={"normal-case"}
+          className={resDivs[0].current?.innerHTML !== "" ? "hidden" : "flex"}
         />
         <div className="w-full flex flex-col md:flex-row md:w-[80%] items-center gap-4">
           <ChoiceDialog
