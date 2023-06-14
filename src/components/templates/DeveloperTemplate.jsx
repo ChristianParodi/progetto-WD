@@ -16,6 +16,8 @@ import {
   LinkIcon,
 } from "@heroicons/react/24/outline";
 
+import ImageBlock from "./blocks/ImageBlock.jsx";
+
 import { Editor } from "@tinymce/tinymce-react";
 
 import { VscTextSize, VscFile } from "react-icons/vsc";
@@ -196,6 +198,9 @@ function DeveloperTemplate({ project }) {
             </Button>
           </>
         )}
+        {clickedBlock === 0 &&
+          clickedOperation === "image" &&
+          resDivs[0].current.addClassList(`bg-url(${image})`)}
         <div
           onClick={() => {
             setClickedBlock(0);
@@ -203,9 +208,9 @@ function DeveloperTemplate({ project }) {
           }}
           ref={resDivs[0]}
           className={
-            resDivs[0].current?.innerHTML === ""
-              ? "hidden"
-              : "prose h-min cursor-pointer"
+            resDivs[0].current?.innerHTML.trim() !== ""
+              ? "prose h-min cursor-pointer"
+              : "hidden"
           }
         ></div>
         <AddMediaButton
@@ -214,7 +219,13 @@ function DeveloperTemplate({ project }) {
             setClickedBlock(0);
             handleOpen();
           }}
-          className={resDivs[0].current?.innerHTML !== "" ? "hidden" : "flex"}
+          className={
+            resDivs[0].current === null ||
+            (resDivs[0].current?.innerHTML.trim() === "" &&
+              clickedOperation === "")
+              ? "flex"
+              : "hidden"
+          }
         />
         <div className="w-full flex flex-col md:flex-row md:w-[80%] items-center gap-4">
           <ChoiceDialog
@@ -224,38 +235,85 @@ function DeveloperTemplate({ project }) {
             handler={handleOpen}
             setClickedOperation={setClickedOperation}
           />
-          {clickedBlock === 1 && clickedOperation === "text" ? (
+          {clickedBlock === 1 && clickedOperation === "text" && (
             <>
               <TinyEditor ref={editorRef} />
-              <Button onClick={() => setClickedOperation("")}>Salva</Button>
+              <Button
+                onClick={() => {
+                  setClickedOperation("");
+                  resDivs[1].current.setHTML(editorRef.current.getContent());
+                }}
+              >
+                Salva
+              </Button>
             </>
-          ) : (
-            <AddMediaButton
-              ref={blocks[1]}
-              className="h-96 flex items-center"
-              iconProps="w-16"
-              onClick={() => {
-                setClickedBlock(1);
-                handleOpen();
-              }}
-            />
           )}
-          {clickedBlock === 2 && clickedOperation === "text" ? (
+          <div
+            onClick={() => {
+              setClickedBlock(1);
+              handleOpen();
+            }}
+            ref={resDivs[1]}
+            className={
+              resDivs[1].current?.innerHTML.trim() !== ""
+                ? "prose h-min cursor-pointer"
+                : "hidden"
+            }
+          ></div>
+          <AddMediaButton
+            ref={blocks[1]}
+            onClick={() => {
+              setClickedBlock(1);
+              handleOpen();
+            }}
+            className={
+              resDivs[1].current === null ||
+              resDivs[1].current?.innerHTML.trim() === ""
+                ? "flex h-96 items-center" // Visibile
+                : "hidden" // Invivisibile
+            }
+            iconProps="w-16"
+          />
+          <ImageBlock className="flex h-96 items-center" iconProps="w-24" />
+          {/* {clickedBlock === 2 && clickedOperation === "text" && (
             <>
               <TinyEditor ref={editorRef} />
-              <Button onClick={() => setClickedOperation("")}>Salva</Button>
+              <Button
+                onClick={() => {
+                  setClickedOperation("");
+                  resDivs[2].current.setHTML(editorRef.current.getContent());
+                }}
+              >
+                Salva
+              </Button>
             </>
-          ) : (
-            <AddMediaButton
-              ref={blocks[2]}
-              className="h-96 flex items-center"
-              iconProps="w-16"
-              onClick={() => {
-                setClickedBlock(2);
-                handleOpen();
-              }}
-            />
           )}
+          <div
+            onClick={() => {
+              setClickedBlock(2);
+              handleOpen();
+            }}
+            ref={resDivs[2]}
+            className={
+              resDivs[2].current?.innerHTML.trim() !== ""
+                ? "prose h-min cursor-pointer"
+                : "hidden"
+            }
+          ></div>
+          <AddMediaButton
+            ref={blocks[2]}
+            onClick={() => {
+              setClickedBlock(2);
+              handleOpen();
+            }}
+            className={
+              resDivs[2].current === null ||
+              resDivs[2].current?.innerHTML.trim() === ""
+                ? "flex h-96 items-center" // Visibile
+                : "hidden" // Invivisibile
+            }
+            iconProps="w-16"
+          /> */}
         </div>
         <div className="w-full flex flex-col md:flex-row md:w-[80%] items-center gap-4">
           {clickedBlock === 3 && clickedOperation === "text" ? (
