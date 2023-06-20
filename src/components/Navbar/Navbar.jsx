@@ -7,9 +7,16 @@ import { UserContext } from "../../context/AuthProvider";
 
 import { HamburgerMenu } from "./HamburgerMenu";
 import { AvatarMenu } from "./AvatarMenu";
+import { useEffect } from "react";
 
 function Navbar() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("user")) {
+      setUser(JSON.parse(sessionStorage.getItem("user")));
+    }
+  }, []);
 
   return (
     <div className="flex justify-between items-center border border-b-2 border-[#E7E7E7] px-6 py-5">

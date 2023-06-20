@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderLogin from "./HeaderLogin";
 import Form from "./Form";
-import loginGif from "/assets/login_gif.svg";
+import loginGif from "/assets/account.gif";
 
 function Login() {
   return (

@@ -25,6 +25,11 @@ export default function Form() {
       setUser(rememberUser);
       navigate("/");
     }
+
+    if (sessionStorage.getItem("user")) {
+      setUser(JSON.parse(sessionStorage.getItem("user")));
+      navigate("/");
+    }
   }, []);
 
   const handleClick = () => {
@@ -61,6 +66,7 @@ export default function Form() {
           bio: record.get("bio"),
         };
         setUser(fetchedUser);
+        sessionStorage.setItem("user", JSON.stringify(fetchedUser));
         if (isChecked)
           // se la casella del remember me e' checked
           localStorage.setItem("remember", JSON.stringify(fetchedUser));

@@ -116,7 +116,7 @@ function Homepage() {
           tutti i tuoi amici
         </Typography>
       </div>
-      <div className="flex">
+      <div className="flex p-10">
         <div className="w-1/4 border-2">side</div>
         <div className="w-3/4 flex flex-wrap gap-4 justify-center pt-10">
           {!isLoading

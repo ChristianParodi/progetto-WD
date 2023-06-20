@@ -62,6 +62,7 @@ export const AvatarMenu = () => {
           onClick={() => {
             setUser(null);
             localStorage.removeItem("remember");
+            sessionStorage.removeItem("user");
           }}
           className="flex items-center gap-2 "
         >

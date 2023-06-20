@@ -12,7 +12,11 @@ import base from "../../db/useAirtable";
 import Loader from "../../utils/Loader";
 import Projects from "./Projects";
 
+import workLogo from "/assets/logo.svg";
+
 import { HeartIcon } from "@heroicons/react/24/solid";
+import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 function Profile() {
   const { user, setUser } = useContext(UserContext);
@@ -39,7 +43,7 @@ function Profile() {
           avatar: record.get("avatar")[0].url,
           bio: record.get("bio"),
         };
-        
+
         setUser(fetchedUser);
       });
   }, []);
@@ -47,6 +51,12 @@ function Profile() {
   return (
     user && (
       <>
+        <div className="p-6">
+          {/* Logo */}
+          <Link to={"/"}>
+            <img src={workLogo} alt="logo" />
+          </Link>
+        </div>
         <Loader />
         {/* <Navbar /> */}
         <div className="grid grid-cols-1 lg:grid-cols-4 lg:grid-rows-3 h-[100vh] w-full">
@@ -55,7 +65,7 @@ function Profile() {
             <Avatar
               variant="circular"
               alt="candice wu"
-              className="md:w-64 md:h-64 w-50 h-50 mb-4"
+              className="p-10 md:w-64 md:h-64 w-50 h-50 mb-4"
               src={user.avatar}
             />
             <Typography variant="lead" className="text-3xl">

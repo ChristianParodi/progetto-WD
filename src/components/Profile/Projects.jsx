@@ -18,7 +18,13 @@ import { Link } from "react-router-dom";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("user")) {
+      setUser(JSON.parse(sessionStorage.getItem("user")));
+    }
+  }, []);
 
   const fetchProjects = () => {
     base("progetto")

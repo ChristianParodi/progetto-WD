@@ -19,7 +19,13 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 const Jobs = ({ openModal, handleOpen }) => {
   const [workExp, setWorkExp] = useState([]);
 
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("user")) {
+      setUser(JSON.parse(sessionStorage.getItem("user")));
+    }
+  }, []);
 
   // Prendi i dati inerenti alle esperienze lavorative
   const fetchWorkExp = () => {
